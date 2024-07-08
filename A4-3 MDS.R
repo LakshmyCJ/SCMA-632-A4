@@ -1,0 +1,16 @@
+icecream_df<-read.csv("D:/Bootcamp VCU datasets/icecream.csv",header=TRUE)
+
+head(icecream_df)
+dim(icecream_df)
+
+names(icecream_df) 
+
+ice<-subset(icecream_df,select = -c(Brand)) 
+distance_matrix<-dist(ice) 
+
+#This matrix represents pairwise distances between all pairs of ice cream brands.
+
+mds_result<-cmdscale(distance_matrix,k=2) 
+
+plot(mds_result[,1],mds_result[,2],pch=16,xlab="Dimension1",ylab="Dimension2",main="MDS plot") 
+text(mds_result[,1], mds_result[,2], labels=rownames(mds_result), pos=3, col="blue")
